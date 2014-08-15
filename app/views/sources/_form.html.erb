@@ -1,0 +1,18 @@
+<!-- This is the source form template -->
+
+<div class="source_form">
+  <%= form_for @source do |f| %>
+    <p>
+      <%= f.label :title, "source title" %>
+      <%= f.text_field :title, :autocomplete => 'off', :placeholder => 'Cloud title is..', :autofocus => true %>
+    </p>
+    <p>
+      <%= f.label :original, "source original" %>
+      <%= f.text_area :original, :placeholder => "Enter the content here to cloudify.." %>
+    </p>
+
+  <div id="source_form_button">
+    <%= f.submit 'sinana sokoro' %>
+  </div>
+  <% end %>
+</div>
