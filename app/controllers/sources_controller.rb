@@ -54,4 +54,43 @@ class SourcesController < ApplicationController
       @sources = @sources.flatten.uniq
     end
   end
+
+  def count_words(words)
+    wordcount = {}
+    #remove whitespace character
+    words.split(/\s/).each do |word| 
+    # turn all letters lowercase
+    word.downcase!
+      # remove whitespaces and do word
+      if word.strip.size > 0
+        unless wordcount.key?(word.strip)
+          wordcount[word.strip] = 1
+        else
+          wordcount[word.strip] = wordcount[word.strip] + 1
+        end
+      end
+    end
+    p wordcount
+  end
+
+  def tag_cloud
+   tags = Tag.asc(:name)
+   if tags.length > 0
+      tags_by_count = Tag.desc(:count)
+      maxOccurs = tags_by_count.first.count
+      minOccurs = tags_by_count.last.count
+
+      # Get relative size for each of the tags and store it in a hash
+      minFontSize = 5
+      maxFontSize = 100
+      @tag_cloud_hash = Hash.new(0)
+      tags.each do |tag| 
+         weight = (tag.count-minOccurs).to_f/(maxOccurs-minOccurs)
+         size = minFontSize + ((maxFontSize-minFontSize)*weight).round
+         @tag_cloud_hash[tag] = size if size > 7
+      end
+    end
+  end
+
+
 end
