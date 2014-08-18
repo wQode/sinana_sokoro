@@ -1,1 +1,29 @@
-<h1>Sources Index Page</h1>
+<!-- Search function -->
+<h2>Search Bar</h2>
+<div class="search_form">
+  <%= form_tag searcher_path, :action => 'search', :method => 'get' do %>
+  <ul>  
+    <li>
+      <%= text_field_tag :search, params[:search], :id => 'search_field' %>
+    </li>
+        
+    <div id="search_form_button">
+      <li>
+        <%= submit_tag "Search", :name => nil %> 
+      </li>
+    </div>
+  </ul>         
+  <% end %>
+</div>
+
+<!-- This displays an index of all existing sources  -->
+<h2>Sources Index</h2>
+<div class="sources_index">
+<% @sources.each do |source| %>
+  <div id="sources_index_inner">
+    <h3><%= link_to(source.title, source_path(source)) if source.title %></h3>
+  </div><!-- sources_index_inner -->
+<% end %>
+</div><!-- sources_index -->
+
+

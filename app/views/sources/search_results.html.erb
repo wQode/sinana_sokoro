@@ -1,0 +1,10 @@
+<!-- Displays list of search results and respective links -->
+
+<div class='main'>
+  <h1>Search results</h1>
+    <% @sources.each do |source| %>
+      <p>
+        <%= link_to source.title, sources_path(:search_term => params[:search]) %>
+      </p>
+    <% end %>
+</div>

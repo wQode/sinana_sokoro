@@ -5,3 +5,9 @@
     <p>source content: <%= @source.original if @source %></p>
   </div>
 </div>
+
+<div id="sources_show_menu"> 
+    <ul>
+      <li><%= link_to('remove', @source, :data => {:confirm => 'are you sure?', :method => :delete }) %> • </li>
+    </ul>
+  </div><!-- sources_show_menu -->
