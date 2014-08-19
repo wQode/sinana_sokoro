@@ -11,13 +11,3 @@
       <li><%= link_to('remove', @source, :data => {:confirm => 'are you sure?', :method => :delete }) %> • </li>
     </ul>
   </div><!-- sources_show_menu -->
-
-
-<h1>Clouded</h1>
-<% if @tag_cloud_hash != nil %>
-  <% @tag_cloud_hash.each_pair do |tag,size| %>
-    <div class="cloud_element">
-      <%= content_tag(:a, tag.name.downcase, { :href => "#{tags_path}?tag=#{tag.slug}", :title => "#{tag.count} artworks", :style => "font-size:#{size}px;" }) %>
-    </div>
-  <% end %>
-<% end %>

@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140815061814) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "sources", force: true do |t|
     t.text     "title"
     t.text     "original"

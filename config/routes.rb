@@ -3,6 +3,4 @@ Rails.application.routes.draw do
 
   resources :sources 
 
-  get '/searcher' => 'sources#index'
-  post '/searcher' => 'sources#index'
 end

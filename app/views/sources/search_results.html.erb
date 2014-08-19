@@ -4,7 +4,7 @@
   <h1>Search results</h1>
     <% @sources.each do |source| %>
       <p>
-        <%= link_to source.title, sources_path(:search_term => params[:search]) %>
+        <%= link_to source.title, source_path(source) %>
       </p>
     <% end %>
 </div>
