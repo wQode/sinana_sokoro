@@ -8,7 +8,11 @@
     </p>
     <p>
       <%= f.label :original, "source original" %>
-      <%= f.text_area :original, :placeholder => "Enter the content here to cloudify.." %>
+      <%= f.text_area :original, :placeholder => "Enter the content here to cloudify" %>
+    </p>
+     <p>
+      <%= f.label :exceptions, "source exceptions" %>
+      <%= f.text_area :exceptions, :value => '', :placeholder => "Enter the exceptions here" %>
     </p>
 
   <div id="source_form_button">

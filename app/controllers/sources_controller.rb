@@ -23,14 +23,26 @@ class SourcesController < ApplicationController
 
   def new
     @source = Source.new
+
   end
 
   def edit
     @source = Source.find params[:id]
   end
 
+  def update
+    source = Source.find params[:id]
+
+    if source.update source_params
+      flash[:notice] = '* Changes saved *'
+      redirect_to source
+    else
+      render :edit
+    end
+  end
+
   def show
-    @source = Source.find params[:pid]
+    @source = Source.find params[:id]
   end
 
   def destroy
@@ -42,9 +54,20 @@ class SourcesController < ApplicationController
     redirect_to sources_path
   end
 
+  def cloud_data
+    @source = Source.find params[:id]
+    json = 
+    {
+     name: "flare",
+     children: @source.bucket_words
+     # children: @source.words.map {|k,v| { :name => k, :size => v }}
+    }
+    render :json => json
+  end
+
   private
   def source_params
-    params.require(:source).permit(:title, :original)
+    params.require(:source).permit(:title, :original, :exceptions)
   end
 
   def search_function
@@ -57,23 +80,7 @@ class SourcesController < ApplicationController
     end
   end
 
-  # def tag_cloud
-  #  tags = Tag.asc(:name)
-  #  if tags.length > 0
-  #     tags_by_count = Tag.desc(:count)
-  #     maxOccurs = tags_by_count.first.count
-  #     minOccurs = tags_by_count.last.count
-
-  #     # Get relative size for each of the tags and store it in a hash
-  #     minFontSize = 5
-  #     maxFontSize = 100
-  #     @tag_cloud_hash = Hash.new(0)
-  #     tags.each do |tag| 
-  #        weight = (tag.count-minOccurs).to_f/(maxOccurs-minOccurs)
-  #        size = minFontSize + ((maxFontSize-minFontSize)*weight).round
-  #        @tag_cloud_hash[tag] = size if size > 7
-  #     end
-  #   end
-  # end
+  def cloud
+  end
 
 end

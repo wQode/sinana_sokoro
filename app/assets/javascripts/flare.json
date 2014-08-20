@@ -1,0 +1,26 @@
+  {
+ "name": "analytics",
+ "children": [
+  
+    {
+     "name": "flare",
+     "children": [
+      {"name": "hash", "size": 3938},
+      {"name": "what", "size": 3812},
+      {"name": "the", "size": 6714},
+      {"name": "hell", "size": 743},
+      {"name": "is_going", "size": 73}
+     ]
+    },
+    {
+     "name": "converters",
+     "children": [
+      {"name": "Converters", "size": 721},
+      {"name": "DelimitedTextConverter", "size": 4294},
+      {"name": "GraphMLConverter", "size": 9800},
+      {"name": "IDataConverter", "size": 1314},
+      {"name": "JSONConverter", "size": 2220}
+     ]
+    }
+  ]
+}

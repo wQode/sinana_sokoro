@@ -22,15 +22,12 @@ class Source < ActiveRecord::Base
 
   def count_words(words)
     wordcount = {}
-    #remove whitespace character
-    words.split(/\s/).each do |word| 
     # filter the text
-    word.gsub(/\+/, ' ')
-      .gsub(/\s+/, ' ')
-      .gsub(/^\s+/, '')
-      .gsub(/\s+$/, '')
-      .downcase
-      .gsub(/[^0-9a-z\s-]/, '')
+    list = words.split(' ').reject do |word|
+      self.exceptions.include?(word)
+    end
+    
+    list.each do |word|
       # remove whitespaces and do word
       if word.strip.size > 0
         unless wordcount.key?(word.strip)
@@ -38,23 +35,36 @@ class Source < ActiveRecord::Base
         else
           wordcount[word.strip] = wordcount[word.strip] + 1
         end
+     end
+   end
+   wordcount
+  end
+
+  def bucket_words
+    output = []
+    bucket = 0
+
+    self.words.each_slice(30) do |words|
+      output[bucket] = {
+        :name => bucket,
+        :children => []
+      }
+      words.each do |pair|
+        word = pair[0]
+        count = pair[1]
+        output[bucket][:children].push({
+          :name => word,
+          :size => count
+        })
       end
+      bucket += 1
     end
-    p wordcount
+
+    output
   end
 
   def save_words
     self.words = count_words(self.original)
   end 
-
-
-  # def self.filter(term)
-  #   term.gsub(/\+/, ' ')
-  #     .gsub(/\s+/, ' ')
-  #     .gsub(/^\s+/, '')
-  #     .gsub(/\s+$/, '')
-  #     .downcase
-  #     .gsub(/[^0-9a-z\s-]/, '')
-  # end
 
 end
