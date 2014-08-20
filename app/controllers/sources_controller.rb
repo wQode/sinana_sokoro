@@ -15,7 +15,13 @@ class SourcesController < ApplicationController
 
   def create
     @source = Source.new source_params
+    if @source.exceptions.nil?
+      @source.exceptions = [params[:exceptions]]
+    # else
+    #   @source.exceptions << params[:exceptions]
+    end
     @source.save
+
 
     flash[:notice] = "New cloud created"
     redirect_to @source
@@ -23,7 +29,6 @@ class SourcesController < ApplicationController
 
   def new
     @source = Source.new
-
   end
 
   def edit
