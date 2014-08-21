@@ -19,6 +19,7 @@ class Source < ActiveRecord::Base
   serialize :exceptions, Array
   
   before_save :save_words
+  before_save :save_exceptions
 
   def count_words(words)
     wordcount = {}
@@ -29,6 +30,7 @@ class Source < ActiveRecord::Base
     
     list.each do |word|
       # remove whitespaces and do word
+      # word.downcase
       if word.strip.size > 0
         unless wordcount.key?(word.strip)
           wordcount[word.strip] = 1 
@@ -66,5 +68,9 @@ class Source < ActiveRecord::Base
   def save_words
     self.words = count_words(self.original)
   end 
+
+  def save_exceptions
+    self.exceptions = self.exceptions.split(/\s*,\s*/) if self.exceptions.kind_of? String
+  end
 
 end
