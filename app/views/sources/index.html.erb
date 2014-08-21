@@ -22,6 +22,7 @@
 <% @sources.each do |source| %>
   <div id="sources_index_inner">
     <h3><%= link_to(source.title, source_path(source)) if source.title %></h3>
+    <p><%= source.original if source %></p> 
   </div><!-- sources_index_inner -->
 <% end %>
 </div><!-- sources_index -->

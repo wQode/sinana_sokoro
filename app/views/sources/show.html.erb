@@ -1,22 +1,18 @@
-<h2>Source <%= @source.id %></h2>
-<div class="sources_show">
-  <div id="sources_show_notes">
-    
+<h2><%= @source.title %></h2>
+<h4>Source <%= @source.id %></h4>
 
-  </div>
-</div>
 
 <div id="sources_show_menu"> 
   <ul>
     <li><%= link_to('edit', edit_source_path(@source)) %> • </li> 
-    <li><%= link_to('remove', @source, :data => {:confirm => 'are you sure?', :method => :delete }) %> • </li>
-     <li><%= link_to('home', sources_path) %>  • </li>
+    <li><%= link_to('remove', @source, :data => {:confirm => 'Ok to confirm delete', :method => :delete }) %> • </li>
+    
   </ul>
 </div><!-- sources_show_menu -->
 
 <style>
 text {
-  font: 18px sans-serif;
+  font: 10px sans-serif;
 }
 </style>
 
@@ -32,7 +28,7 @@ var diameter = 960,
 var bubble = d3.layout.pack()
     .sort(null)
     .size([diameter, diameter])
-    .padding(1.5);
+    .padding(4);
 
 var svg = d3.select("body").append("svg")
     .attr("width", diameter)

@@ -3,20 +3,24 @@
 <div class="source_form">
   <%= form_for @source do |f| %>
     <p>
-      <%= f.label :title, "source title" %>
-      <%= f.text_field :title, :autocomplete => 'off', :placeholder => 'Cloud title is..', :autofocus => true %>
+      <%= f.label :title, "Source title" %>
+      <%= f.text_field :title, :autocomplete => 'off', :placeholder => 'Title', :autofocus => true %>
     </p>
     <p>
-      <%= f.label :original, "source original" %>
-      <%= f.text_area :original, :placeholder => "Enter the content here to cloudify" %>
+      <%= f.label :original, "Source original" %>
+      <%= f.text_area :original, :placeholder => "Content to cloud" %>
     </p>
-     <p>
-      <%= f.label :exceptions, "source exceptions" %>
-      <%= f.text_area :exceptions, :placeholder => "Enter the exceptions here", :value => @source.exceptions.join(', ') %>
+    <p>
+      <%= f.label :exceptions, "Source exceptions" %>
+      <%= f.text_area :exceptions, :placeholder => "Words to exclude", :value => @source.exceptions.join(', ') %> 
     </p>
-
+      <!-- join(', ') changes the array into string for user input -->
+    <p>
+      <%= f.label :count, "Minimum word count per word" %>
+      <%= f.number_field :count , :min => 1, :max => 15 %> 
+    </p>
   <div id="source_form_button">
-    <%= f.submit 'cloud it' %>
+    <%= f.submit 'Cloud it' %>
   </div>
   <% end %>
 </div>

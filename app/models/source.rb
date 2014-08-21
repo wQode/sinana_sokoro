@@ -21,32 +21,42 @@ class Source < ActiveRecord::Base
   before_save :save_words
   before_save :save_exceptions
 
-  def count_words(words)
+  def normalized_original(original)
+    # filters non-word characters and spaces
+    original.gsub(/[^a-zA-Z ]/,'').gsub(/ +/,' ')
+  end
+
+  def count_words(original)
     wordcount = {}
-    # filter the text
-    list = words.split(' ').reject do |word|
-      self.exceptions.include?(word)
-    end
-    
-    list.each do |word|
+
+    filtered_list(normalized_original(original)).each do |word|
       # remove whitespaces and do word
-      # word.downcase
-      if word.strip.size > 0
+      if word.strip.size >= 4
         unless wordcount.key?(word.strip)
           wordcount[word.strip] = 1 
         else
-          wordcount[word.strip] = wordcount[word.strip] + 1
+          wordcount[word.strip] += 1
         end
-     end
-   end
-   wordcount
+      end
+    end
+    self.filter_word_value(wordcount,self.count)
+  end
+
+  def filtered_list(original)
+    original.downcase.split(' ').reject do |word|
+      self.exceptions.include?(word) 
+    end
+  end
+
+  def filter_word_value(words, value = 5)
+    words.reject {|k,v| v <= value }
   end
 
   def bucket_words
     output = []
     bucket = 0
 
-    self.words.each_slice(30) do |words|
+    self.words.each_slice(25) do |words|
       output[bucket] = {
         :name => bucket,
         :children => []

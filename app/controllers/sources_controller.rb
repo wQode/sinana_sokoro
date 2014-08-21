@@ -9,13 +9,11 @@ class SourcesController < ApplicationController
       return
     else
     @sources = Source.all
-    # @results = Source.where("title iLIKE ?", "%#{params[:search]}%")
     end
   end
 
   def create
     @source = Source.new source_params
-
     @source.save
 
     flash[:notice] = "New cloud created"
@@ -33,7 +31,7 @@ class SourcesController < ApplicationController
   def update
     source = Source.find params[:id]
     if source.update source_params
-      flash[:notice] = '* Changes saved *'
+      flash[:notice] = 'Updated changes'
       redirect_to source
     else
       render :edit
