@@ -1,20 +1,13 @@
 <h2><%= @source.title %></h2>
-<h4>Source <%= @source.id %></h4>
-
 
 <div id="sources_show_menu"> 
   <ul>
-    <li><%= link_to('edit', edit_source_path(@source)) %> • </li> 
-    <li><%= link_to('remove', @source, :data => {:confirm => 'Ok to confirm delete', :method => :delete }) %> • </li>
-    
+    <li> • <%= link_to('edit', edit_source_path(@source)) %> • </li> 
+    <li> • <%= link_to('remove', @source, :data => {:confirm => 'Ok to confirm delete', :method => :delete }) %> • </li>  
   </ul>
 </div><!-- sources_show_menu -->
 
-<style>
-text {
-  font: 10px sans-serif;
-}
-</style>
+
 
 
 <script>
@@ -73,5 +66,6 @@ function classes(root) {
 }
 
 d3.select(self.frameElement).style("height", diameter + "px");
+
 
 </script>

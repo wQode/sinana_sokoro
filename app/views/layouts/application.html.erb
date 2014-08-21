@@ -7,10 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<h2>Clouding</h2>
+<div class="container">
+  <h2>Cloud it with bubbles</h2>
 
-<%= render :partial => "/shared/nav"  %>
-<%= yield %>
-
+  <%= render :partial => "/shared/nav"  %>
+  <%= yield %>
+</div>
 </body>
 </html>

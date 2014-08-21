@@ -4,20 +4,28 @@
   <%= form_for @source do |f| %>
     <p>
       <%= f.label :title, "Source title" %>
+    </p>
+    <p>
       <%= f.text_field :title, :autocomplete => 'off', :placeholder => 'Title', :autofocus => true %>
     </p>
     <p>
       <%= f.label :original, "Source original" %>
+    </p>
+    <p>
       <%= f.text_area :original, :placeholder => "Content to cloud" %>
     </p>
     <p>
       <%= f.label :exceptions, "Source exceptions" %>
-      <%= f.text_area :exceptions, :placeholder => "Words to exclude", :value => @source.exceptions.join(', ') %> 
     </p>
+    <p> 
+      <%= f.text_area :exceptions, :placeholder => "Words to exclude", :value => @source.exceptions.join(', ') %> 
       <!-- join(', ') changes the array into string for user input -->
+    </p>
     <p>
       <%= f.label :count, "Minimum word count per word" %>
-      <%= f.number_field :count , :min => 1, :max => 15 %> 
+    </p>
+    <p> 
+      <%= f.number_field :count , :min => 1, :max => 99 %> 
     </p>
   <div id="source_form_button">
     <%= f.submit 'Cloud it' %>

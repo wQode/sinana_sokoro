@@ -14,6 +14,7 @@ class SourcesController < ApplicationController
 
   def create
     @source = Source.new source_params
+
     @source.save
 
     flash[:notice] = "New cloud created"
@@ -64,7 +65,7 @@ class SourcesController < ApplicationController
 
   private
   def source_params
-    params.require(:source).permit(:title, :original, :exceptions)
+    params.require(:source).permit(:title, :original, :exceptions, :count)
   end
 
   def search_function

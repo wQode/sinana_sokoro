@@ -31,7 +31,7 @@ class Source < ActiveRecord::Base
 
     filtered_list(normalized_original(original)).each do |word|
       # remove whitespaces and do word
-      if word.strip.size >= 4
+      if word.strip.size >= 4 # exclude words whose length is less than 4
         unless wordcount.key?(word.strip)
           wordcount[word.strip] = 1 
         else
@@ -39,7 +39,7 @@ class Source < ActiveRecord::Base
         end
       end
     end
-    self.filter_word_value(wordcount,self.count)
+    self.filter_word_value(wordcount, count)
   end
 
   def filtered_list(original)
@@ -48,15 +48,15 @@ class Source < ActiveRecord::Base
     end
   end
 
-  def filter_word_value(words, value = 5)
-    words.reject {|k,v| v <= value }
+  def filter_word_value(words, value=3)
+    words.reject {|k,v| v <= Integer(value) }
   end
 
   def bucket_words
     output = []
     bucket = 0
 
-    self.words.each_slice(25) do |words|
+    self.words.each_slice(1) do |words|
       output[bucket] = {
         :name => bucket,
         :children => []
