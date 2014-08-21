@@ -3,19 +3,19 @@
 <div class="source_form">
   <%= form_for @source do |f| %>
     <p>
-      <%= f.label :title, "Source title" %>
+      <%= f.label :title, "Title" %>
     </p>
     <p>
       <%= f.text_field :title, :autocomplete => 'off', :placeholder => 'Title', :autofocus => true %>
     </p>
     <p>
-      <%= f.label :original, "Source original" %>
+      <%= f.label :original, "Text" %>
     </p>
     <p>
       <%= f.text_area :original, :placeholder => "Content to cloud" %>
     </p>
     <p>
-      <%= f.label :exceptions, "Source exceptions" %>
+      <%= f.label :exceptions, "Exceptions" %>
     </p>
     <p> 
       <%= f.text_area :exceptions, :placeholder => "Words to exclude", :value => @source.exceptions.join(', ') %> 
