@@ -71,7 +71,7 @@ textarea {
 li {
   list-style-type: none;
   text-align: center;
-  display: block;
+  display: inline-block;
   margin: 0 auto;
   font-size: 12px;
 }
@@ -165,7 +165,8 @@ span.navigationSpace {
   border-radius: 15px;
 }
 #sources_index_inner a:hover {
-  color:#FFFFE0;
+  /*color:#FFFFE0;*/
+  color: #104E8B;
   text-decoration: none;
   font-size: 12px;
   box-shadow: none;
@@ -215,4 +216,7 @@ body {
   margin-right: 200px;
   font-size: 12px;
   word-wrap:normal;
+}
+span.navigationSpace {
+  padding-left: 12px;
 }
