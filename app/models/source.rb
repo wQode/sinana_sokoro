@@ -15,17 +15,24 @@
 
 class Source < ActiveRecord::Base
   belongs_to :user 
-  serialize :words, Hash
-  serialize :exceptions, Array
-  
-  before_save :save_words
+
+  # application handles the data as a hash
+  serialize :words, Hash 
+  # application handles the data as an array
+  serialize :exceptions, Array 
+
+  # callback functions, before saving data to database
+  before_save :save_words 
   before_save :save_exceptions
 
+
+  # sanitizes the text data
   def normalized_original(original)
     # filters non-word characters and spaces
     original.gsub(/[^a-zA-Z ]/,'').gsub(/ +/,' ')
   end
 
+  # main function that builds the word count and word list
   def count_words(original)
     wordcount = {}
 
@@ -42,16 +49,19 @@ class Source < ActiveRecord::Base
     self.filter_word_value(wordcount, count)
   end
 
+  # filtering exceptions 
   def filtered_list(original)
     original.downcase.split(' ').reject do |word|
       self.exceptions.include?(word) 
     end
   end
 
+  # excluding words that occurs less than 3 instances
   def filter_word_value(words, value=3)
     words.reject {|k,v| v <= Integer(value) }
   end
 
+  # builds the format for D3 library to display visualisation
   def bucket_words
     output = []
     bucket = 0
@@ -71,10 +81,10 @@ class Source < ActiveRecord::Base
       end
       bucket += 1
     end
-
     output
   end
 
+  # callback functions before saving
   def save_words
     self.words = count_words(self.original)
   end 

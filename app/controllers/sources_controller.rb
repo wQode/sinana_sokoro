@@ -56,7 +56,7 @@ class SourcesController < ApplicationController
     @source = Source.find params[:id]
     json = 
     {
-     name: "flare",
+     name: "quma",
      children: @source.bucket_words
      # children: @source.words.map {|k,v| { :name => k, :size => v }}
     }
@@ -74,7 +74,6 @@ class SourcesController < ApplicationController
     unless search == ""
       @sources.concat(Source.where("title ILIKE :search", search: "%#{ search }%"))# % retrieves everything before and after 'and'
       @sources.concat(Source.where("original ILIKE :search", search: "%#{ search }%")) # ILIKE enables search term to becase insensitive
-      # @sources = @sources.flatten.uniq
     end
   end
 

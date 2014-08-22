@@ -9,9 +9,9 @@
   color:#383838;
   font-weight: 900;
   font-size: 18px;
-    text-shadow: #FFD700 1px 0px 2px;
-    -webkit-font-smoothing: antialiased;
-    height: auto;
+  text-shadow: #FFD700 1px 0px 2px;
+  -webkit-font-smoothing: antialiased;
+  height: auto;
 }
 .container {
   max-width:960px;
@@ -21,7 +21,6 @@
   color: #ccc;
   font-family: 'Open Sans', sans-serif;
 }
-
 /********** Headers **********/
 h1{
   display:block;
@@ -49,6 +48,12 @@ h2 {
 h3, h4 {
   text-decoration: underline;
   font-size: 10px;
+}
+.arch {
+  font-style: italic;
+  font-weight: 900;
+  font-size: 16px;
+  color: #636363;
 }
 /********** Labels, Buttons, Input, Textareas **********/
 input {

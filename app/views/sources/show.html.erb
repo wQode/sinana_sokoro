@@ -1,14 +1,12 @@
-<h2><%= @source.title %></h2>
-
+<!-- show source page -->
 <div id="sources_show_menu"> 
   <ul>
     <li> • <%= link_to('edit', edit_source_path(@source)) %> • </li> 
-    <li> • <%= link_to('remove', @source, :data => {:confirm => 'Ok to confirm delete', :method => :delete }) %> • </li>  
+    <li><%= link_to('remove', @source, :data => {:confirm => 'Ok to confirm delete', :method => :delete }) %> • </li>  
   </ul>
 </div><!-- sources_show_menu -->
 
-
-
+<h2><%= @source.title %></h2>
 
 <script>
 
