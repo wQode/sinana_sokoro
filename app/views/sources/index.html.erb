@@ -1,18 +1,8 @@
 <!-- Search function -->
-<!-- <h2>Search Bar</h2> -->
 <div class="search_form">
   <%= form_tag sources_path, :action => 'search', :method => 'get' do %>
-  <ul>  
-    <li>
-      <%= text_field_tag :search, params[:search], :id => 'search_field' %>
-    </li>
-        
-    <div id="search_form_button">
-      <li>
-        <%= submit_tag "Find cloud", :name => nil %> 
-      </li>
-    </div>
-  </ul>         
+  <%= text_field_tag :search, params[:search], :id => 'search_field' %>
+  <%= submit_tag "find cloud", :name => nil, :id => 'search_form_button' %>       
   <% end %>
 </div>
 

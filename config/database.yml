@@ -25,7 +25,7 @@ development:
   <<: *default
   database: sinana_sokoro_development
   host: localhost
-  username: WQ_MBP
+  username: WQU
   password:
 
 test:
@@ -35,5 +35,5 @@ test:
 production:
   <<: *default
   database: sinana_sokoro_production
-  username: enterprise
-  password: <%= ENV['ENTERPRISE_DATABASE_PASSWORD'] %>
+  username: sinana_sokoro
+  password: <%= ENV['SINANA_SOKORO_DATABASE_PASSWORD'] %>

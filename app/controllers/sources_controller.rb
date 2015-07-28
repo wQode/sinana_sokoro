@@ -73,7 +73,7 @@ class SourcesController < ApplicationController
     @sources = []
     unless search == ""
       @sources.concat(Source.where("title ILIKE :search", search: "%#{ search }%"))# % retrieves everything before and after 'and'
-      @sources.concat(Source.where("original ILIKE :search", search: "%#{ search }%")) # ILIKE enables search term to becase insensitive
+      # @sources.concat(Source.where("original ILIKE :search", search: "%#{ search }%")) # ILIKE enables search term to becase insensitive
     end
   end
 

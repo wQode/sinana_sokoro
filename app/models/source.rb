@@ -26,6 +26,7 @@ class Source < ActiveRecord::Base
   before_save :save_exceptions
 
 
+
   # sanitizes the text data
   def normalized_original(original)
     # filters non-word characters and spaces
@@ -37,9 +38,11 @@ class Source < ActiveRecord::Base
     wordcount = {}
 
     filtered_list(normalized_original(original)).each do |word|
-      # remove whitespaces and do word
-      if word.strip.size >= 4 # exclude words whose length is less than 4
-        unless wordcount.key?(word.strip)
+      # strip remove whitespaces and do word
+      # exclude words whose length is less than 3
+      if word.strip.size >= 3 
+        # if any of the keys in wordcount includes word, wordcount[word] = +1
+        unless wordcount.key?(word.strip) 
           wordcount[word.strip] = 1 
         else
           wordcount[word.strip] += 1
@@ -52,13 +55,13 @@ class Source < ActiveRecord::Base
   # filtering exceptions 
   def filtered_list(original)
     original.downcase.split(' ').reject do |word|
-      self.exceptions.include?(word) 
+      self.exceptions.include?(word)
     end
   end
 
-  # excluding words that occurs less than 3 instances
-  def filter_word_value(words, value=3)
-    words.reject {|k,v| v <= Integer(value) }
+  # excluding words that occurs less than 1 instances
+  def filter_word_value(words, value = 1)
+    words.reject {|k,v| v < Integer(value) }
   end
 
   # builds the format for D3 library to display visualisation

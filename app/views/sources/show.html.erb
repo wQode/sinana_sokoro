@@ -1,4 +1,5 @@
 <!-- show source page -->
+<h2><%= @source.title %></h2>
 <div id="sources_show_menu"> 
   <ul>
     <li> • <%= link_to('edit', edit_source_path(@source)) %> • </li> 
@@ -6,7 +7,6 @@
   </ul>
 </div><!-- sources_show_menu -->
 
-<h2><%= @source.title %></h2>
 
 <script>
 
@@ -44,10 +44,12 @@ d3.json("/cloud_data/" + SOURCE_ID, function(error, root) {
         console.log('packagename ', d.packageName); 
         return color(d.packageName); });
 
+//This is where you append the bubble appearance
   node.append("text")
-      .attr("dy", ".3em")
+      .attr("dy", ".5em")
       .style("text-anchor", "middle")
       .text(function(d) { return d.className.substring(0, d.r / 3); });
+      // .text(function(d) { return d.className.substring(0, d.r / 3)  + ": " + format(d.value); });
 });
 
 // Returns a flattened hierarchy containing all leaf nodes under the root.
