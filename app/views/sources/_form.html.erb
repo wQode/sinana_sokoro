@@ -2,28 +2,28 @@
 
 <div class="source_form">
   <%= form_for @source do |f| %>
-    <p>
+    <div class="label_title">
       <%= f.label :title, "Title"%>
-    </p>
+    </div>
     <p>
       <%= f.text_field :title, :autocomplete => 'off', :placeholder => 'Title', :autofocus => true %>
     </p>
-    <p>
+    <div class="label_text">
       <%= f.label :original, "Text" %>
-    </p>
+    </div>
     <p>
-      <%= f.text_area :original, :placeholder => "Content to cloud", :size => "100x20", :display => "left" %>
+      <%= f.text_area :original, :placeholder => "Content to cloud", :size => "80x20" %>
     </p>
-    <p>
+    <div class="label_exceptions">
       <%= f.label :exceptions, "Exceptions" %>
-    </p>
+    </div>
     <p> 
-      <%= f.text_area :exceptions, :placeholder => "Words to exclude", :size => "100x10", :value => @source.exceptions.join(', ') %> 
+      <%= f.text_area :exceptions, :placeholder => "Words to exclude", :size => "80x10", :value => @source.exceptions.join(', ') %> 
       <!-- join(', ') changes the array into string for user input -->
     </p>
-    <p>
+    <div class="label_count">
       <%= f.label :count, "Minimum word frequency" %>
-    </p>
+    </div>
     <p> 
       <%= f.number_field :count , :min => 1, :max => 99 %> 
     </p>

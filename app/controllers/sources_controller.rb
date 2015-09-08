@@ -32,7 +32,7 @@ class SourcesController < ApplicationController
   def update
     source = Source.find params[:id]
     if source.update source_params
-      flash[:notice] = 'Updated changes'
+      flash[:notice] = "Updated changes"
       redirect_to source
     else
       render :edit
